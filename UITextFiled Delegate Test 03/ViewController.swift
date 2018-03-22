@@ -9,17 +9,26 @@
 import UIKit
 
 class ViewController: UIViewController {
+    @IBOutlet weak var lbl: UILabel!
+    @IBOutlet weak var text: UITextField!
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        // Do any additional setup after loading the
+        text.placeholder = "입력 기기"
+        text.clearButtonMode = UITextFieldViewMode.whileEditing
+        text.borderStyle = UITextBorderStyle.line
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    
+    @IBAction func btn(_ sender: Any) {
+        lbl.text = "Hello " + text.text!
+        text.text = ""
+        text.resignFirstResponder() // 키패드를 내림
     }
-
+    
+    // background의 View를 누르면 키패드가 내려감
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        text.resignFirstResponder()
+    }
 
 }
-
